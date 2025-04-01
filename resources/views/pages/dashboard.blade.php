@@ -6,8 +6,10 @@
     <title>Desa Adat Jimbaran Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
         [x-cloak] { display: none !important; }
     </style>
 </head>
@@ -23,86 +25,23 @@
                  'lg:ml-64': sidebarOpen,
                  'ml-0': !sidebarOpen
              }">
-            <!-- Header -->
-            <header class="bg-white shadow-sm z-10">
-                <div class="flex items-center justify-between px-4 py-4 sm:px-6">
-                    <div class="flex items-center">
-                        <button @click="mobileSidebarOpen = true" class="mr-2 text-gray-500 hover:text-gray-600 lg:hidden">
-                            <i class="fas fa-bars"></i>
-                        </button>
-                        <button @click="sidebarOpen = !sidebarOpen" class="hidden lg:block mr-2 text-gray-500 hover:text-gray-600">
-                            <i class="fas fa-bars"></i>
-                        </button>
-                        <h2 class="text-lg font-medium text-gray-800">Dashboard Overview</h2>
-                    </div>
-                    
-                    <div class="flex items-center space-x-4">
-                        <button class="p-1 text-gray-400 hover:text-gray-500">
-                            <i class="fas fa-bell"></i>
-                        </button>
-                        <div class="relative">
-                            <button class="flex items-center space-x-2">
-                                <img class="w-8 h-8 rounded-full" src="https://ui-avatars.com/api/?name=Admin" alt="User">
-                                <span class="hidden md:inline">Admin</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </header>
+
+            <x-header></x-header>
 
             <!-- Main Content Area -->
             <main class="flex-1 overflow-y-auto p-4 sm:p-6 bg-gray-50">
                 <!-- Stats Cards -->
-                <div class="grid grid-cols-1 gap-5 mt-6 sm:grid-cols-2 lg:grid-cols-4">
-                    <div class="p-5 bg-white rounded-lg shadow">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <p class="text-sm font-medium text-gray-500 truncate">Total Visitors</p>
-                                <p class="mt-1 text-3xl font-semibold text-gray-900">24,543</p>
-                            </div>
-                            <div class="p-3 rounded-full bg-indigo-100 text-indigo-600">
-                                <i class="fas fa-users"></i>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="p-5 bg-white rounded-lg shadow">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <p class="text-sm font-medium text-gray-500 truncate">Total Revenue</p>
-                                <p class="mt-1 text-3xl font-semibold text-gray-900">$12,345</p>
-                            </div>
-                            <div class="p-3 rounded-full bg-green-100 text-green-600">
-                                <i class="fas fa-dollar-sign"></i>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="p-5 bg-white rounded-lg shadow">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <p class="text-sm font-medium text-gray-500 truncate">Active Projects</p>
-                                <p class="mt-1 text-3xl font-semibold text-gray-900">12</p>
-                            </div>
-                            <div class="p-3 rounded-full bg-blue-100 text-blue-600">
-                                <i class="fas fa-tasks"></i>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="p-5 bg-white rounded-lg shadow">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <p class="text-sm font-medium text-gray-500 truncate">Conversion Rate</p>
-                                <p class="mt-1 text-3xl font-semibold text-gray-900">3.2%</p>
-                            </div>
-                            <div class="p-3 rounded-full bg-purple-100 text-purple-600">
-                                <i class="fas fa-chart-pie"></i>
-                            </div>
-                        </div>
+                <x-widget.stats-cards />
+
+                <!-- Charts -->
+                <div class="mt-5 flex justify-center">
+                    <x-widget.population-chart />
+                    <div class="grid grid-rows-2">
+                        <x-widget.gender-chart />
+                        <x-widget.calendar-dashboard />
                     </div>
                 </div>
-
+                
                 <!-- Recent Activity -->
                 <div class="mt-8">
                     <div class="flex items-center justify-between">

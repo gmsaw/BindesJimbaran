@@ -23,6 +23,16 @@
             <i class="fas fa-times"></i>
         </button>
     </div>
+
+    <!-- Search Bar -->
+    <div class="px-4 py-3">
+            <div class="relative">
+                <input type="text" placeholder="Search..." class="w-full px-4 py-2 text-sm bg-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white">
+                <span class="absolute inset-y-0 right-3 flex items-center text-gray-500">
+                    <i class="fas fa-search"></i>
+                </span>
+            </div>
+    </div>
     
     <nav class="px-2 py-4 overflow-y-auto h-[calc(100%-80px)]">
         <div class="space-y-1">

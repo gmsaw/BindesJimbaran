@@ -9,10 +9,12 @@ class Sidebar extends Component
     public $currentRoute;
     public $menuItems;
     public $toolsItems;
+    public $searchPlaceholder;
 
     public function __construct()
     {
         $this->currentRoute = request()->route()->getName();
+        $this->searchPlaceholder = 'Search menu...';
         
         $this->menuItems = [
             'dashboard' => ['icon' => 'home', 'label' => 'Dashboard'],

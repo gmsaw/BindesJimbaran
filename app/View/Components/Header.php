@@ -16,10 +16,11 @@ class Header extends Component
         $this->currentRoute = request()->route()->getName();
 
         $this->headerTitle = [
+            'landingpage' => ['title' => 'LandingPage'],
             'dashboard' => ['title' => 'Dashboard Overview'],
             'analytics' => ['title' => 'Analytics'],
             'settings' => ['title' => 'Settings'],
-            'users' => ['title' => 'Users'],
+            'input' => ['title' => 'Input Data'],
             'reports' => ['title' => 'Reports'],
             'database' => ['title' => 'Database'],
             'hosting' => ['title' => 'Hosting']

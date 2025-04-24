@@ -20,7 +20,7 @@ class Sidebar extends Component
             'dashboard' => ['icon' => 'home', 'label' => 'Dashboard'],
             'analytics' => ['icon' => 'chart-line', 'label' => 'Analytics'],
             'settings' => ['icon' => 'cog', 'label' => 'Settings'],
-            'users' => ['icon' => 'users', 'label' => 'Users'],
+            'input' => ['icon' => 'users', 'label' => 'Input'],
             'reports' => ['icon' => 'file-alt', 'label' => 'Reports']
         ];
 

@@ -69,7 +69,7 @@
             const password = document.getElementById('password').value;
             
             // Simpan login sederhana (hanya untuk demo)
-            // console.log('Login attempt with:', { email, password });
+            console.log('Login attempt with:', { email, password });
 
             window.location.href = '/dashboard';
         });

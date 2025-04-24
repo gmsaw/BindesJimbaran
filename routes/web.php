@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('pages.testcalendar');
-})->name('landingpage');
+//AUTH
+Route::get('/', [AuthController::class, 'login'])->name('loginpage');
+Route::post('/login', [AuthController::class, 'authenticate'])->name('loginpage');
+Route::post('/logout', [AuthController::class, 'logout'])->name('loginpage');
 
+//DASHBOARD
 Route::get('/dashboard', function () {
     return view('pages.dashboard');
 })->name('dashboard');

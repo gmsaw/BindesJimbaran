@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -40,6 +42,29 @@ class AuthController extends Controller
         return back()->withErrors([
             'email' => 'Terjadi kesalahan, mohon periksa kembali email atau password anda',
         ])->onlyInput('email');
+    }
+
+    public function registerView()
+    {
+        return view('pages.auth.register');
+    }
+
+    public function register(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => ['required'],
+            'email' => ['required', 'email'],
+            'password' => ['required']
+        ]);
+
+        $user = new User();
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->password = Hash::make($request->input('password'));
+        $user->role_id = 2;
+        $user->saveOrFail();
+
+        return redirect('/')->with('success', 'Berhasil mendaftarkan akun, menunggu persetujuan admin');
     }
 
     public function logout(Request $request)

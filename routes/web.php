@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [AuthController::class, 'login'])->name('loginpage');
 Route::post('/login', [AuthController::class, 'authenticate'])->name('loginpage');
 Route::post('/logout', [AuthController::class, 'logout'])->name('loginpage');
+Route::get('/register', [AuthController::class, 'registerView'])->name('registerpage');
+Route::post('/register', [AuthController::class, 'register'])->name('registerpage');
 
 //DASHBOARD
 Route::get('/dashboard', function () {

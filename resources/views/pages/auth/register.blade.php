@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - MyWebApp</title>
+    <title>Daftar - MyWebApp</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -12,13 +12,19 @@
         <!-- Nama Aplikasi -->
         <div class="text-center mb-8">
             <h1 class="text-3xl font-bold text-indigo-600">Desa Adat Jimbaran</h1>
-            <p class="text-gray-600 mt-2">Silakan masuk ke akun Anda</p>
+            <p class="text-gray-600 mt-2">Silahkan daftarkan akun Anda</p>
         </div>
         
         <!-- Form Login -->
-        <form id="loginForm" class="space-y-4" action="/login" method="POST">
+        <form id="loginForm" class="space-y-4" action="/register" method="POST">
             @csrf
             @method('POST')
+            <div>
+                <label for="name" class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
+                <input type="text" id="email" name="name" required 
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+
             <div>
                 <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
                 <input type="email" id="email" name="email" required 
@@ -30,18 +36,12 @@
                 <input type="password" id="password" name="password" required 
                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
             </div>
-            
-            <div class="flex items-center justify-between">
-                <div class="flex items-center">
-                    <input id="remember-me" name="remember-me" type="checkbox" 
-                        class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
-                    <label for="remember-me" class="ml-2 block text-sm text-gray-700">Ingat saya</label>
-                </div>
-                
-                <div class="text-sm">
-                    <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Lupa password?</a>
-                </div>
-            </div>
+
+            <!-- <div>
+                <label for="password" class="block text-sm font-medium text-gray-700">Konfirmasi Password</label>
+                <input type="password" id="password" name="password" required 
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+            </div> -->
             
             <div>
                 <button type="submit" 
@@ -54,8 +54,8 @@
         <!-- Link Daftar -->
         <div class="mt-6 text-center">
             <p class="text-sm text-gray-600">
-                Belum punya akun? 
-                <a href="/register" class="font-medium text-indigo-600 hover:text-indigo-500">Daftar sekarang</a>
+                Sudah punya akun? 
+                <a href="/" class="font-medium text-indigo-600 hover:text-indigo-500">Masuk sekarang</a>
             </p>
         </div>
     </div>

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('pages.testcalendar');
-});
+})->name('landingpage');
 
 Route::get('/dashboard', function () {
     return view('pages.dashboard');
@@ -18,9 +18,9 @@ Route::get('/settings', function () {
     return view('pages.dashboard');
 })->name('settings');
 
-Route::get('/users', function () {
-    return view('pages.dashboard');
-})->name('users');
+Route::get('/input', function () {
+    return view('pages.inputdata');
+})->name('input');
 
 Route::get('/reports', function () {
     return view('pages.dashboard');

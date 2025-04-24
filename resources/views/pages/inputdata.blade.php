@@ -294,7 +294,7 @@
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
                     <input type="date" class="dob-input block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm">
-                </td>~
+                </td>
                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <button type="button" class="delete-row text-red-600 hover:text-red-900" data-rowid="${rowId}">
                         <i class="fas fa-trash"></i>

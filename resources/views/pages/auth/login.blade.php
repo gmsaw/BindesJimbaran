@@ -16,7 +16,9 @@
         </div>
         
         <!-- Form Login -->
-        <form id="loginForm" class="space-y-4">
+        <form id="loginForm" class="space-y-4" action="/login" method="POST">
+            @csrf
+            @method('POST')
             <div>
                 <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
                 <input type="email" id="email" name="email" required 
@@ -49,8 +51,6 @@
             </div>
         </form>
         
-        
-        
         <!-- Link Daftar -->
         <div class="mt-6 text-center">
             <p class="text-sm text-gray-600">
@@ -60,7 +60,7 @@
         </div>
     </div>
 
-    <script>
+    <!-- <script>
         // Handle form submission
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -74,6 +74,6 @@
             window.location.href = '/dashboard';
         });
         
-    </script>
+    </script> -->
 </body>
 </html>

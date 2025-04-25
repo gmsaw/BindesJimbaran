@@ -17,8 +17,14 @@ class RoleMiddleware
      */
     public function handle(Request $request, Closure $next, ...$roles): Response
     {
+        // Cek jika user tidak login atau role_id null
+        if (!Auth::check() || is_null(Auth::user()->role_id)) {
+            return back();
+        }
+
         $rolename = Role::find(Auth::user()->role_id)->name;
-        if(!Auth::check() || !in_array($rolename, $roles)){
+        
+        if (!in_array($rolename, $roles)) {
             return back();
         }
 

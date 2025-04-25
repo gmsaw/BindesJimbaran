@@ -54,8 +54,8 @@
         const fileUpload = document.getElementById('file-upload');
         const fileName = document.getElementById('fileName');
         const processExcelBtn = document.getElementById('processExcelBtn');
-        const addRowBtn = document.getElementById('addRowBtn');
-        const manualInputTable = document.getElementById('manualInputTable');
+        // const addRowBtn = document.getElementById('addRowBtn');
+        // const manualInputTable = document.getElementById('manualInputTable');
         const resultsSection = document.getElementById('resultsSection');
         const downloadJsonBtn = document.getElementById('downloadJsonBtn');
         const previewBtn = document.getElementById('previewBtn');
@@ -76,8 +76,8 @@
             fileUpload.addEventListener('change', handleFileSelect);
             processExcelBtn.addEventListener('click', processExcelData);
             
-            // Manual input handling
-            addRowBtn.addEventListener('click', addManualRow);
+            // // Manual input handling
+            // addRowBtn.addEventListener('click', addManualRow);
             
             // Results handling
             downloadJsonBtn.addEventListener('click', downloadJSON);

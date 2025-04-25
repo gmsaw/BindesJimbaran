@@ -15,6 +15,23 @@
             <p class="text-gray-600 mt-2">Silakan masuk ke akun Anda</p>
         </div>
         
+        <!-- Error Message -->
+        @error('email')
+        <div class="mb-6 p-4 border-l-4 border-red-500 bg-red-50 rounded">
+            <div class="flex items-center">
+                <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-full bg-red-100">
+                    <i class="fas fa-exclamation text-red-600"></i>
+                </div>
+                <div class="ml-4">
+                    <h3 class="text-sm font-medium text-red-800">Login Gagal</h3>
+                    <div class="mt-1 text-sm text-red-700">
+                        <p>{{ $message }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @enderror
+        
         <!-- Form Login -->
         <form id="loginForm" class="space-y-4" action="/login" method="POST">
             @csrf

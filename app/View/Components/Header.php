@@ -19,7 +19,7 @@ class Header extends Component
             'landingpage' => 'LandingPage',
             'dashboard' => 'Dashboard Overview',
             'analytics' => 'Analytics',
-            'settings' => 'Settings',
+            'settings' => 'Pengaturan',
             'input' => 'Input Data',
             'reports' => 'Reports',
             'database' => 'Database',

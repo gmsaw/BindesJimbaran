@@ -24,7 +24,7 @@ Route::get('/settings', function () {
 })->name('settings')->middleware('role:Admin');
 
 Route::get('/input', function () {
-    return view('pages.inputdata');
+    return view('pages.inputdata.index');
 })->name('input')->middleware('role:Admin');
 
 Route::get('/reports', function () {

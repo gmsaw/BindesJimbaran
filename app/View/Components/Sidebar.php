@@ -19,9 +19,9 @@ class Sidebar extends Component
         $this->menuItems = [
             'dashboard' => ['icon' => 'home', 'label' => 'Dashboard'],
             'analytics' => ['icon' => 'chart-line', 'label' => 'Analytics'],
-            'settings' => ['icon' => 'cog', 'label' => 'Settings'],
-            'input' => ['icon' => 'users', 'label' => 'Input'],
-            'reports' => ['icon' => 'file-alt', 'label' => 'Reports']
+            'input' => ['icon' => 'users', 'label' => 'Input Data'],
+            'reports' => ['icon' => 'file-alt', 'label' => 'Reports'],
+            'settings' => ['icon' => 'cog', 'label' => 'Pengaturan'],
         ];
 
         $this->toolsItems = [

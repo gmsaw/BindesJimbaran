@@ -13,28 +13,28 @@ Route::post('/register', [AuthController::class, 'register'])->name('registerpag
 //DASHBOARD
 Route::get('/dashboard', function () {
     return view('pages.dashboard');
-})->name('dashboard');
+})->name('dashboard')->middleware('role:Admin');
 
 Route::get('/analytics', function () {
     return view('pages.dashboard');
-})->name('analytics');
+})->name('analytics')->middleware('role:Admin');
 
 Route::get('/settings', function () {
     return view('pages.dashboard');
-})->name('settings');
+})->name('settings')->middleware('role:Admin');
 
 Route::get('/input', function () {
     return view('pages.inputdata');
-})->name('input');
+})->name('input')->middleware('role:Admin');
 
 Route::get('/reports', function () {
     return view('pages.dashboard');
-})->name('reports');
+})->name('reports')->middleware('role:Admin');
 
 Route::get('/database', function () {
     return view('pages.dashboard');
-})->name('database');
+})->name('database')->middleware('role:Admin');
 
 Route::get('/hosting', function () {
     return view('pages.dashboard');
-})->name('hosting');
+})->name('hosting')->middleware('role:Admin');

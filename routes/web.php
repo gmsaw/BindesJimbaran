@@ -20,7 +20,7 @@ Route::get('/analytics', function () {
 })->name('analytics')->middleware('role:Admin');
 
 Route::get('/settings', function () {
-    return view('pages.dashboard');
+    return view('pages.settings.index');
 })->name('settings')->middleware('role:Admin');
 
 Route::get('/input', function () {

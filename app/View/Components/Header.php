@@ -15,16 +15,18 @@ class Header extends Component
     {
         $this->currentRoute = request()->route()->getName();
 
-        $this->headerTitle = [
-            'landingpage' => ['title' => 'LandingPage'],
-            'dashboard' => ['title' => 'Dashboard Overview'],
-            'analytics' => ['title' => 'Analytics'],
-            'settings' => ['title' => 'Settings'],
-            'input' => ['title' => 'Input Data'],
-            'reports' => ['title' => 'Reports'],
-            'database' => ['title' => 'Database'],
-            'hosting' => ['title' => 'Hosting']
+        $titles = [
+            'landingpage' => 'LandingPage',
+            'dashboard' => 'Dashboard Overview',
+            'analytics' => 'Analytics',
+            'settings' => 'Settings',
+            'input' => 'Input Data',
+            'reports' => 'Reports',
+            'database' => 'Database',
+            'hosting' => 'Hosting'
         ];
+
+        $this->headerTitle = $titles[$this->currentRoute] ?? 'Judul Halaman';
     }
 
     public function isActive($route)

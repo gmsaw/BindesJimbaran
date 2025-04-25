@@ -21,7 +21,7 @@
                 <button @click="sidebarOpen = !sidebarOpen" class="hidden lg:block mr-2 text-gray-500 hover:text-gray-600">
                     <i class="fas fa-bars"></i>
                 </button>
-                <h2 class="text-lg font-medium text-gray-800">Dashboard</h2>
+                <h2 class="text-lg font-medium text-gray-800">{{ $headerTitle ?? 'Default Title' }}</h2>
             </div>
             
             <div class="flex items-center space-x-4">
@@ -61,7 +61,7 @@
                         <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                             <i class="fas fa-user mr-2"></i> Profil
                         </a>
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                        <a href="/settings" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                             <i class="fas fa-cog mr-2"></i> Pengaturan
                         </a>
                         <div class="border-t border-gray-200"></div>

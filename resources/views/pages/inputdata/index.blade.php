@@ -30,109 +30,15 @@
             <!-- Tab Contents -->
             <div class="p-8">
                 <!-- Excel Import Tab -->
-                <div id="excelContent" class="tab-content hidden">
-                    <div class="mb-8">
-                        <label class="block text-sm font-medium text-gray-700 mb-2">
-                            <i class="fas fa-upload mr-2"></i>Upload Excel File
-                        </label>
-                        <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-xl">
-                            <div class="space-y-1 text-center">
-                                <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
-                                    <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                                <div class="flex text-sm text-gray-600">
-                                    <label for="file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none">
-                                        <span>Upload a file</span>
-                                        <input id="file-upload" name="file-upload" type="file" class="sr-only" accept=".xlsx, .xls">
-                                    </label>
-                                    <p class="pl-1">or drag and drop</p>
-                                </div>
-                                <p class="text-xs text-gray-500">XLSX or XLS up to 10MB</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <span id="fileName" class="text-sm font-medium text-gray-700 hidden"></span>
-                        </div>
-                        <button id="processExcelBtn" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
-                            <i class="fas fa-cog mr-2"></i>Process Data
-                        </button>
-                    </div>
-                </div>
+                @include('pages.inputdata.excelimport')
 
                 <!-- Manual Input Tab -->
-                <div id="manualContent" class="tab-content ">
-                    <div class="mb-6">
-                        <div class="flex justify-between items-center mb-4">
-                            <h3 class="text-lg font-medium text-gray-900">Tambahkan Data Baru</h3>
-                            <button id="addRowBtn" class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 transition duration-200">
-                                <i class="fas fa-plus mr-1"></i>Tambahkan Baris
-                            </button>
-                        </div>
-
-                        <div class="overflow-x-auto">
-                            <table class="min-w-full divide-y divide-gray-200">
-                                <thead class="bg-gray-50">
-                                    <tr>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama Lengkap</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Jenis Kelamin</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal Lahir</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal Lahir</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal Lahir</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal Lahir</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal Lahir</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal Lahir</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal Lahir</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal Lahir</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal Lahir</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="manualInputTable" class="bg-white divide-y divide-gray-200">
-                                    <!-- Rows will be added here -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+                @include('pages.inputdata.manualinput')
             </div>
         </div>
 
         <!-- Results Section -->
-        <div id="resultsSection" class="bg-white rounded-xl shadow-lg overflow-hidden max-w-6xl mx-auto mt-8 hidden">
-            <div class="p-6 border-b">
-                <h2 class="text-xl font-semibold text-gray-800">Processed Data</h2>
-            </div>
-            <div class="p-6">
-                <div class="flex justify-between mb-6">
-                    <div class="flex space-x-3">
-                        <button id="downloadJsonBtn" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-200">
-                            <i class="fas fa-file-export mr-2"></i>Tambahkan ke Database
-                        </button>
-                        <button id="previewBtn" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition duration-200">
-                            <i class="fas fa-eye mr-2"></i>Preview Data
-                        </button>
-                    </div>
-                    <div id="recordCount" class="text-sm text-gray-500 self-center"></div>
-                </div>
-
-                <div id="statusMessage" class="mb-4 p-3 rounded-md hidden"></div>
-
-                <div id="previewContainer" class="hidden">
-                    <div class="overflow-x-auto">
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <thead class="bg-gray-50">
-                                <tr id="previewHeaders"></tr>
-                            </thead>
-                            <tbody id="previewData" class="bg-white divide-y divide-gray-200"></tbody>
-                        </table>
-                    </div>
-                    <div class="mt-4 text-sm text-gray-500 text-center" id="previewNote"></div>
-                </div>
-            </div>
-        </div>
+        @include('pages.inputdata.resultssection')
     </div>
 
     <script>

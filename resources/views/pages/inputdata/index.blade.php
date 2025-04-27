@@ -1,16 +1,6 @@
 @extends('layouts.dasboard-layout')
 
 @section('maincontent')
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-
 <!-- Main Content Area -->
 <main class="flex-1 overflow-y-auto p-4 sm:p-6 bg-gray-50">
     <div class="container mx-auto px-4 py-8">

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ResidentController;
 use Illuminate\Support\Facades\Route;
 
 //AUTH
@@ -31,9 +32,7 @@ Route::get('/reports', function () {
     return view('pages.dashboard');
 })->name('reports')->middleware('role:Admin');
 
-Route::get('/database', function () {
-    return view('pages.dashboard');
-})->name('database')->middleware('role:Admin');
+Route::get('/database', [ResidentController::class, 'index'])->name('database')->middleware('role:Admin');
 
 Route::get('/hosting', function () {
     return view('pages.dashboard');

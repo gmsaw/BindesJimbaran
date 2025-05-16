@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class GenderChart extends Component
+class GenderChartComponents extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class GenderChart extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.gender-chart');
+        return view('components.gender-chart-components');
     }
 }

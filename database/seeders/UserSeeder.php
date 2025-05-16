@@ -20,12 +20,5 @@ class UserSeeder extends Seeder
             'status'=>'approved',
             'role_id'=>'1',
         ]);
-
-        User::create([
-            'name'=>'gmsaw',
-            'email'=>'hendrasastra027@gmail.com',
-            'password'=>'123456',
-            'role_id'=>'2',
-        ]);
     }
 }

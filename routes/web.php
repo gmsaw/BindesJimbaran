@@ -1,7 +1,15 @@
 <?php
 
+use App\Http\Controllers;
+
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\KKQController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ResidentController;
+use App\Http\Controllers\Cetakkartu;
+use App\Http\Controllers\statistics\Statistics;
+
+
 use Illuminate\Support\Facades\Route;
 
 //AUTH
@@ -12,13 +20,36 @@ Route::get('/register', [AuthController::class, 'registerView'])->name('register
 Route::post('/register', [AuthController::class, 'register'])->name('registerpage');
 
 //DASHBOARD
-Route::get('/dashboard', function () {
-    return view('pages.dashboard');
-})->name('dashboard')->middleware('role:Admin');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('role:Admin');
 
-Route::get('/analytics', function () {
-    return view('pages.dashboard');
-})->name('analytics')->middleware('role:Admin');
+
+
+//ANALYTICS
+Route::get('/statistics', [Statistics::class, 'index'])->name('statistics')->middleware('role:Admin');
+Route::get('/statistics/krama-adat' , [Statistics::class, 'kramaAdat'])->name('statistics.krama-adat')->middleware('role:Admin');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/KKQ', [KKQController::class, 'index'])
+        ->name('KKQ.index')
+        ->middleware('role:Admin');
+
+    Route::get('/NIKQ/{nik}/print', [KKQController::class, 'printCard'])
+        ->name('KKQ.print')
+        ->middleware('role:Admin');
+
+    Route::get('/KKQ/{no_kk}/print', [KKQController::class, 'printCardFamily'])
+        ->name('KKQFam.print')
+        ->middleware('role:Admin');
+});
+
+// routes/web.php
+Route::get('/pdf-preview/{filename}', function ($filename) {
+    return response()->file(storage_path('app/' . $filename));
+});
+
+
+
+Route::get('/cetak-kartu' , [Cetakkartu::class, 'index'])->name('Cetakkartu')->middleware('role:Admin');
 
 Route::get('/settings', function () {
     return view('pages.settings.index');

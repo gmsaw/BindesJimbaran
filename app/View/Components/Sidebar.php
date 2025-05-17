@@ -15,13 +15,14 @@ class Sidebar extends Component
     {
         $this->currentRoute = request()->route()->getName();
         $this->searchPlaceholder = 'Search menu...';
-        
+
         $this->menuItems = [
             'dashboard' => ['icon' => 'home', 'label' => 'Dashboard'],
-            'analytics' => ['icon' => 'chart-line', 'label' => 'Analytics'],
+            'statistics' => ['icon' => 'chart-line', 'label' => 'Statistics'],
+            'Cetakkartu' => ['icon' => 'chart-line', 'label' => 'Cetak Kartu'],
             'input' => ['icon' => 'users', 'label' => 'Input Data'],
             'reports' => ['icon' => 'file-alt', 'label' => 'Reports'],
-            'settings' => ['icon' => 'cog', 'label' => 'Pengaturan'],
+            'settings' => ['icon' => 'cog', 'label' => 'Settings'],
         ];
 
         $this->toolsItems = [

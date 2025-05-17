@@ -11,3 +11,20 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+/* Compact table styles */
+.compact-table {
+    font-size: 0.8125rem; /* 13px */
+}
+
+.compact-table th,
+.compact-table td {
+    padding: 0.25rem 0.5rem;
+}
+
+.compact-table .truncate {
+    max-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

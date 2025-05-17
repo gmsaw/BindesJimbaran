@@ -17,16 +17,18 @@ class Header extends Component
 
         $titles = [
             'landingpage' => 'LandingPage',
-            'dashboard' => 'Dashboard Overview',
-            'analytics' => 'Analytics',
+            'dashboard' => 'Selamat Datang di Sistem Admnistrasi Desa Adat Jimbaran',
+            'statistics' => 'Statistik',
             'settings' => 'Pengaturan',
             'input' => 'Input Data',
             'reports' => 'Reports',
             'database' => 'Database',
-            'hosting' => 'Hosting'
+            'hosting' => 'Hosting',
+            'statistics.krama-adat' => 'Data Statistik Krama Adat',
+            'KKQ.index' => 'QUERY DATA KK-Q'
         ];
 
-        $this->headerTitle = $titles[$this->currentRoute] ?? 'Judul Halaman';
+        $this->headerTitle = $titles[$this->currentRoute] ?? '';
     }
 
     public function isActive($route)

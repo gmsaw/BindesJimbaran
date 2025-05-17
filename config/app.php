@@ -2,6 +2,8 @@
 
 return [
 
+    'bandesa_name' => 'I GEDE ARTA WIJAYA, S.H.',
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

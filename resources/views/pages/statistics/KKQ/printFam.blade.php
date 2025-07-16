@@ -19,11 +19,34 @@
                 margin: 0;
             }
         }
+
+        /* CSS untuk Watermark */
+        .watermark-container {
+            position: relative; /* Diperlukan agar pseudo-element ::before bisa diposisikan */
+            z-index: 0; /* Menciptakan stacking context baru */
+        }
+
+        .watermark-container::before {
+            content: ''; /* Pseudo-element membutuhkan properti content */
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            /* Ganti URL ini dengan path ke logo Anda menggunakan helper asset Laravel */
+            background-image: url('{{ asset('images/logo-desa.png') }}');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 600px; /* Sesuaikan ukuran watermark sesuai kebutuhan */
+            opacity: 0.05; /* Sesuaikan tingkat transparansi (0.05 - 0.2 biasanya bagus) */
+            z-index: -1; /* Menempatkan watermark di belakang konten */
+        }
+
     </style>
 </head>
 <body class="bg-white font-sans">
 
-<div class="w-[297mm] h-[210mm] border border-gray-400 mx-auto relative overflow-hidden">
+<div class="watermark-container w-[297mm] h-[210mm] border border-gray-400 mx-auto relative overflow-hidden">
 
     <!-- Header -->
     <div class="bg-red-600">
@@ -38,8 +61,8 @@
                 <p class="text-xl font-bold">Kecamatan Kuta Selatan, Kabupaten Badung</p>
             </div>
 
-            <div class="mr-2">
-                <img src="{{ asset('images/logo-desa.png') }}" alt="Logo MDA" class="h-30">
+            <div class="mr-4">
+                <img src="{{ asset('images/logo-desa.png') }}" alt="Logo MDA" class="w-[8.5rem]">
             </div>
 
         </div>
@@ -110,8 +133,8 @@
     </div>
 
     <!-- Tabel Anggota Keluarga -->
-    <div class="mt-1 mb-1 flex justify-center">
-        <table class="ml-[3rem] mr-[3rem] text-[9px] border border-gray-700 border-collapse w-[100%]">
+    <div class="mt-[0.25rem] mb-1 flex justify-center">
+        <table class="ml-[3rem] mr-[3rem] text-[px] border border-gray-700 border-collapse w-[100%]">
             <thead class="bg-gray-200">
             <tr>
                 <th class="border border-gray-700 px-1 py-1">No</th>
@@ -127,7 +150,7 @@
             </tr>
             </thead>
             <tbody>
-            @for ($i = 0; $i < 8; $i++)
+            @for ($i = 0; $i < 10; $i++)
                 <tr>
                     <td class="border border-gray-700 px-1 py-1 text-center">{{ $i + 1 }}</td>
 
@@ -176,8 +199,9 @@
         </div>
     </div>
 
-    <div class="mt-2 mb-2 flex justify-center ml-15">
+    <div class="mt-[0.25rem] mb-2 flex justify-center ml-15">
         <div class="flex gap-[12rem] text-sm">
+
             <div class="text-left space-y-1/2">
                 <div class="flex">
                     <div class="w-40 text-left font-bold ml-[10rem]">
@@ -185,6 +209,17 @@
                         <p class="mt-6 font-semibold">Pengarep</p>
                         <p class="mt-2 mb-2">&nbsp;</p>
                         <p class="mt-8">{{ $data[$kepala]->nama_lengkap ?? '............................' }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-left space-y-1/2">
+                <div class="flex">
+                    <div class="w-40 text-left font-bold">
+                        <p>&nbsp;</p>
+                        <p class="mt-6 font-semibold">Kelihan Natah</p>
+                        <p class="mt-2 mb-2">&nbsp;</p>
+                        <p class="mt-8">{{ '............................' }}</p>
                     </div>
                 </div>
             </div>

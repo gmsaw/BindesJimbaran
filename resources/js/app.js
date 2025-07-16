@@ -1,3 +1,3 @@
 import './bootstrap';
 
-import './components/statistics/CardComponents';
+// import './components/statistics/CardComponents';

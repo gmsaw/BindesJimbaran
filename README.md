@@ -13,7 +13,7 @@ Ini adalah sistem informasi berbasis web yang dibangun dengan Laravel untuk meng
 
 1.  **Clone Repository**
     ```bash
-    git clone [https://github.com/gmsaw/BindesJimbaran.git](https://github.com/gmsaw/BindesJimbaran.git)
+    git clone https://github.com/gmsaw/BindesJimbaran.git
     cd BindesJimbaran
     ```
 

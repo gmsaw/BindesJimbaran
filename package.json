@@ -3,13 +3,17 @@
     "type": "module",
     "scripts": {
         "build": "vite build",
-        "dev": "vite"
+        "dev": "vite",
+        "tailwind:init": "tailwindcss init -p"
     },
     "devDependencies": {
+        "autoprefixer": "^10.4.21",
         "axios": "^1.7.4",
         "concurrently": "^9.0.1",
+        "electron": "^37.2.0",
         "laravel-vite-plugin": "^1.2.0",
-        "tailwindcss": "^4.1.5",
+        "postcss": "^8.5.6",
+        "tailwindcss": "^4.1.11",
         "vite": "^6.0.11"
     },
     "name": "vcs",
@@ -20,7 +24,7 @@
         "test": "tests"
     },
     "dependencies": {
-        "@tailwindcss/vite": "^4.1.5",
+        "@tailwindcss/vite": "^4.1.11",
         "ansi-regex": "^5.0.1",
         "ansi-styles": "^4.3.0",
         "asynckit": "^0.4.0",
@@ -30,6 +34,7 @@
         "color-convert": "^2.0.1",
         "color-name": "^1.1.4",
         "combined-stream": "^1.0.8",
+        "cropperjs": "^2.0.0",
         "delayed-stream": "^1.0.0",
         "detect-libc": "^2.0.3",
         "dunder-proto": "^1.0.1",
@@ -64,7 +69,6 @@
         "nanoid": "^3.3.11",
         "picocolors": "^1.1.1",
         "picomatch": "^2.3.1",
-        "postcss": "^8.5.3",
         "proxy-from-env": "^1.1.0",
         "puppeteer": "^24.8.2",
         "require-directory": "^2.1.1",

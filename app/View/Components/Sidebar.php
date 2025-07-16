@@ -19,15 +19,18 @@ class Sidebar extends Component
         $this->menuItems = [
             'dashboard' => ['icon' => 'home', 'label' => 'Dashboard'],
             'statistics' => ['icon' => 'chart-line', 'label' => 'Statistics'],
-            'Cetakkartu' => ['icon' => 'chart-line', 'label' => 'Cetak Kartu'],
-            'input' => ['icon' => 'users', 'label' => 'Input Data'],
-            'reports' => ['icon' => 'file-alt', 'label' => 'Reports'],
-            'settings' => ['icon' => 'cog', 'label' => 'Settings'],
+            'cetakkartu' => ['icon' => 'print', 'label' => 'Cetak Kartu'],
+            'kependudukan.create.options' => ['icon' => 'users', 'label' => 'Input Data'],
+            'surat.indexMain' => ['icon' => 'file-text', 'label' => 'Surat Menyurat'],
+//            'reports' => ['icon' => 'file-alt', 'label' => 'Reports'],
+//            'settings' => ['icon' => 'cog', 'label' => 'Settings'],
         ];
 
         $this->toolsItems = [
-            'database' => ['icon' => 'database', 'label' => 'Database'],
-            'hosting' => ['icon' => 'server', 'label' => 'Hosting']
+            'master-data.index' => ['icon' => 'database', 'label' => 'Manajemen Data'],
+            'statistik.index' => ['icon' => 'chart-bar', 'label' => 'Statistik Penduduk'],
+            'export.index' => ['icon' => 'file-export', 'label' => 'Export Data Penduduk'],
+//            'hosting' => ['icon' => 'server', 'label' => 'Hosting']
         ];
     }
 

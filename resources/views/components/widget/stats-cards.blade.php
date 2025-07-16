@@ -14,7 +14,7 @@
                     <div class="p-5 bg-white rounded-lg shadow">
                         <div class="flex items-center justify-between">
                             <div>
-                                <p class="text-sm font-medium text-gray-500 truncate">Krama Adat</p>
+                                <p class="text-sm font-medium text-gray-500 truncate">Keluarga Krama Adat</p>
                                 <p class="mt-1 text-3xl font-semibold text-gray-900">{{$kramaAdat}}</p>
                             </div>
                             <div class="p-3 rounded-full bg-green-100 text-green-600">
@@ -26,7 +26,7 @@
                     <div class="p-5 bg-white rounded-lg shadow">
                         <div class="flex items-center justify-between">
                             <div>
-                                <p class="text-sm font-medium text-gray-500 truncate">Krama Tamiu</p>
+                                <p class="text-sm font-medium text-gray-500 truncate">Keluarga Krama Tamiu</p>
                                 <p class="mt-1 text-3xl font-semibold text-gray-900">{{$kramaTamiu}}</p>
                             </div>
                             <div class="p-3 rounded-full bg-blue-100 text-blue-600">
@@ -38,7 +38,7 @@
                     <div class="p-5 bg-white rounded-lg shadow">
                         <div class="flex items-center justify-between">
                             <div>
-                                <p class="text-sm font-medium text-gray-500 truncate">Tamiu</p>
+                                <p class="text-sm font-medium text-gray-500 truncate">Keluarga Tamiu</p>
                                 <p class="mt-1 text-3xl font-semibold text-gray-900">{{$tamiu}}</p>
                             </div>
                             <div class="p-3 rounded-full bg-purple-100 text-purple-600">

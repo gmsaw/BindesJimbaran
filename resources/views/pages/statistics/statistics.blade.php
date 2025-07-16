@@ -14,8 +14,9 @@
                 </div>
                 <div class="p-4">
                     <p class="text-gray-600 mb-4">Daftar penduduk Krama Adat dan cetak kartu.</p>
-                    <button class="w-full px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
-                        <a href="/statistics/krama-adat">Enter</a>
+{{--                    <button class="w-full px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">--}}
+                    <button class="w-full px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition" disabled>
+                        <a href="#">Enter (Soon)</a>
                     </button>
                 </div>
             </div>

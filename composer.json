@@ -11,7 +11,8 @@
         "barryvdh/laravel-snappy": "^1.0",
         "elibyy/tcpdf-laravel": "^11.4",
         "laravel/framework": "^12.0",
-        "laravel/tinker": "^2.10.1"
+        "laravel/tinker": "^2.10.1",
+        "laravolt/indonesia": "^0.36.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

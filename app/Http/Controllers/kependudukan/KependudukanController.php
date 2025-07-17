@@ -327,28 +327,36 @@ class KependudukanController extends Controller
      */
     public function edit(Request $request, $npk)
     {
-      // Eager load relasi yang dibutuhkan di seluruh halaman
-      $kk_adat = KartuKeluargaAdat::with(['banjar', 'keteranganKeluarga'])->findOrFail($npk);
+        $krama_request = $request->input('krama_request');
+        
+        // Eager load relasi yang dibutuhkan di seluruh halaman
+        $kk_adat = KartuKeluargaAdat::with(['banjar', 'keteranganKeluarga.penatahan'])->findOrFail($npk);
 
-      $anggota_list = AnggotaKkAdat::where('npk_fk', $npk)
-        ->with('masterAdat.masterIndividu')
-        ->orderBy('id_keanggotaan')
-        ->get();
+        $anggota_list = AnggotaKkAdat::where('npk_fk', $npk)
+            ->with('masterAdat.masterIndividu')
+            ->orderBy('id_keanggotaan')
+            ->get();
 
-      // Ambil ID anggota yang ingin diedit dari URL (?edit_anggota=...)
-      $anggota_to_edit_id = $request->query('edit_anggota');
-      $anggota_to_edit = $anggota_list->firstWhere('id_keanggotaan', $anggota_to_edit_id);
+        // Ambil ID anggota yang ingin diedit dari URL (?edit_anggota=...)
+        $anggota_to_edit_id = $request->query('edit_anggota');
+        $anggota_to_edit = $anggota_list->firstWhere('id_keanggotaan', $anggota_to_edit_id);
 
-      // Ambil data untuk dropdown
-      $all_dadia = DadiaPenatahan::orderBy('nama_dadia')->get();
+        // --- PERBAIKAN UTAMA DI SINI ---
+        // Ambil data dari model Dadia yang benar dan muat relasi penatahan-nya
+        $all_dadia = Dadia::with('penatahan')->orderBy('nama_dadia')->get();
+        
+        // Ambil juga data krama untuk dropdown kelihan natah
+        $all_krama_adat = MasterAdat::with('masterIndividu', 'banjar')->limit(100)->get();
 
-      return view('pages.kependudukan.basis_kka.edit', [
-        'title' => 'Edit Data KK: ' . $kk_adat->npk,
-        'kk_adat' => $kk_adat,
-        'anggota_list' => $anggota_list,
-        'anggota_to_edit' => $anggota_to_edit,
-        'all_dadia' => $all_dadia,
-      ]);
+        return view('pages.kependudukan.basis_kka.edit', [
+            'title' => 'Edit Data KK: ' . $kk_adat->npk,
+            'kk_adat' => $kk_adat,
+            'anggota_list' => $anggota_list,
+            'anggota_to_edit' => $anggota_to_edit,
+            'all_dadia' => $all_dadia, // Mengirim data yang benar
+            'all_krama_adat' => $all_krama_adat, // Mengirim data krama
+            'krama_request' => $krama_request,
+        ]);
     }
 
       /**

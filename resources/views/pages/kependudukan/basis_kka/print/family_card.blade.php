@@ -3,6 +3,8 @@
 {{--  @dd($kk_adat->kode_klasifikasi_krama_fk ?-> klasifikasi_krama -> krama)--}}
 {{--}}--}}
 {{--  @dd($keterangan_keluarga->id_dadia_penatahan_fk)--}}
+
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -174,21 +176,49 @@
       </tr>
       </thead>
       <tbody>
-      @for ($i = 0; $i < 10; $i++)
-        <tr>
-          <td class="border border-gray-700 px-1 py-1 text-center">{{ $i + 1 }}</td>
+        @php
+          $anggota_aktif = $anggota_list->where('status_keanggotaan', 'aktif');
 
-          @if(!empty($anggota_list[$i]))
-            <td class="border border-gray-700 px-1 py-1">{{ $anggota_list[$i]->masterAdat?->masterIndividu->nama_lengkap }}</td>
-            <td class="border border-gray-700 px-1 py-1 text-center uppercase">{{ $anggota_list[$i]->masterAdat?->masterIndividu->jenis_kelamin ?? '' }}</td>
-            <td class="border border-gray-700 px-1 py-1">{{ $anggota_list[$i]->masterAdat->nika ?? '' }}</td>
-            <td class="border border-gray-700 px-1 py-1 uppercase">{{ $anggota_list[$i]->masterAdat?->masterIndividu->tempat_lahir . ', ' . \Carbon\Carbon::parse($anggota_list[$i]->masterAdat?->masterIndividu->tanggal_lahir)->translatedFormat('d F Y') }}</td>
-            <td class="border border-gray-700 px-1 py-1">{{ $anggota_list[$i]->masterAdat?->masterIndividu->status_perkawinan ?? '' }}</td>
-            <td class="border border-gray-700 px-1 py-1">{{ $anggota_list[$i]->masterAdat?->masterIndividu->pekerjaan ?? '' }}</td>
-            <td class="border border-gray-700 px-1 py-1">{{ $anggota_list[$i]->masterAdat?->masterIndividu->status_hubungan ?? '' }}</td>
-            <td class="border border-gray-700 px-1 py-1">{{ $anggota_list[$i]->masterAdat?->masterIndividu->nama_ayah ?? '' }}</td>
-            <td class="border border-gray-700 px-1 py-1">{{ $anggota_list[$i]->masterAdat?->masterIndividu->nama_ibu ?? '' }}</td>
-          @else
+          $order = [
+              'kepala_keluarga',
+              'istri',
+              'anak',
+              'orang_tua',
+              'cucu',
+              'saudara',
+              'famili_lain',
+              'lainnya',
+              'tidak_diketahui'
+          ];
+
+          // Urutkan anggota yang sudah difilter
+          $sorted_anggota = $anggota_aktif->sortBy(function($anggota) use ($order) {
+              return array_search($anggota->status_hubungan_adat, $order);
+          });
+        @endphp
+
+        @foreach ($sorted_anggota as $anggota)
+          <tr>
+            <td class="border border-gray-700 px-1 py-1 text-center">{{ $loop->iteration }}</td>
+            <td class="border border-gray-700 px-1 py-1">{{ $anggota->masterAdat?->masterIndividu->nama_lengkap }}</td>
+            <td class="border border-gray-700 px-1 py-1 text-center uppercase">{{ substr($anggota->masterAdat?->masterIndividu->jenis_kelamin, 0, 1) ?? '' }}</td>
+            <td class="border border-gray-700 px-1 py-1">{{ $anggota->masterAdat->nika ?? '' }}</td>
+            <td class="border border-gray-700 px-1 py-1 uppercase">
+              @if($anggota->masterAdat?->masterIndividu?->tanggal_lahir)
+                {{ $anggota->masterAdat?->masterIndividu->tempat_lahir . ', ' . \Carbon\Carbon::parse($anggota->masterAdat?->masterIndividu->tanggal_lahir)->translatedFormat('d F Y') }}
+              @endif
+            </td>
+            <td class="border border-gray-700 px-1 py-1">{{ ucfirst(str_replace('_', ' ',  $anggota->masterAdat?->masterIndividu->status_perkawinan)) ?? '' }}</td>
+            <td class="border border-gray-700 px-1 py-1">{{ ucfirst(str_replace('_', ' ', $anggota->masterAdat?->masterIndividu->pekerjaan)) ?? '' }}</td>
+            <td class="border border-gray-700 px-1 py-1 capitalize">{{ ucfirst(str_replace('_', ' ', $anggota->status_hubungan_adat)) ?? '' }}</td>
+            <td class="border border-gray-700 px-1 py-1">{{ $anggota->masterAdat?->masterIndividu->nama_ayah ?? '' }}</td>
+            <td class="border border-gray-700 px-1 py-1">{{ $anggota->masterAdat?->masterIndividu->nama_ibu ?? '' }}</td>
+          </tr>
+        @endforeach
+
+        @for ($i = $sorted_anggota->count(); $i < 10; $i++)
+          <tr>
+            <td class="border border-gray-700 px-1 py-1 text-center">{{ $i + 1 }}</td>
             <td class="border border-gray-700 px-1 py-1"></td>
             <td class="border border-gray-700 px-1 py-1 text-center"></td>
             <td class="border border-gray-700 px-1 py-1"></td>
@@ -198,9 +228,8 @@
             <td class="border border-gray-700 px-1 py-1"></td>
             <td class="border border-gray-700 px-1 py-1"></td>
             <td class="border border-gray-700 px-1 py-1"></td>
-          @endif
-        </tr>
-      @endfor
+          </tr>
+        @endfor
 
       </tbody>
     </table>

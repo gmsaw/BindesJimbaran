@@ -19,8 +19,9 @@ class Sidebar extends Component
         $this->menuItems = [
             'dashboard' => ['icon' => 'home', 'label' => 'Dashboard'],
             'statistics' => ['icon' => 'chart-line', 'label' => 'Statistics'],
-            'cetakkartu' => ['icon' => 'print', 'label' => 'Cetak Kartu'],
-            'kependudukan.create.options' => ['icon' => 'users', 'label' => 'Input Data'],
+            'cetakkartu' => ['icon' => 'print', 'label' => 'Data & Cetak Kartu'],
+            'kependudukan.create.options' => ['icon' => 'users', 'label' => 'Input Data Keluarga'],
+            'penduduk.create.options' => ['icon' => 'user', 'label' => 'Input Data Penduduk'],
             'surat.indexMain' => ['icon' => 'file-text', 'label' => 'Surat Menyurat'],
 //            'reports' => ['icon' => 'file-alt', 'label' => 'Reports'],
 //            'settings' => ['icon' => 'cog', 'label' => 'Settings'],

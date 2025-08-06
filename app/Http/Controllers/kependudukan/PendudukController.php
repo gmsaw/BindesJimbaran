@@ -15,6 +15,7 @@ use App\Models\KlasifikasiKrama;
 use App\Models\MasterAdat;
 use App\Models\MasterIndividu;
 
+use App\Models\NpkCounter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
@@ -300,5 +301,76 @@ class PendudukController extends Controller
 
     return back()->with('error', 'Aksi tidak diketahui.');
   }
+
+  public function pendudukOptionsCreate()
+  {
+    return view('pages.kependudukan.penduduk.options');
+  }
+
+  public function pendudukCreateBali()
+  {
+    $all_banjar = Banjar::orderBy('nama_banjar')->get();
+
+    return view('pages.kependudukan.penduduk.createBali', [
+      'title' => 'Input Data Penduduk Individual',
+      'all_banjar' => $all_banjar,
+    ]);
+  }
+
+  public function pendudukCreateLuarBali()
+  {
+    $all_banjar = Banjar::orderBy('nama_banjar')->get();
+
+    return view('pages.kependudukan.penduduk.createBali', [
+      'title' => 'Input Data Penduduk Individual',
+      'all_banjar' => $all_banjar,
+    ]);
+  }
+
+  public function store(Request $request)
+  {
+//    dd( $request->all());
+
+    $connectionName = 'db_kependudukan';
+
+    // 1. Validasi Data
+    $request->validate([
+      'nama_lengkap' => 'required|string|max:100',
+      'nik_nasional' => ['required', 'string', 'max:25', Rule::unique($connectionName . '.master_individu', 'nik_nasional')],
+      'kode_banjar_fk' => ['required', "exists:{$connectionName}.banjar,kode_banjar"],
+      'status_di_banjar' => 'required|string',
+      // Tambahkan validasi lain yang dianggap wajib
+    ]);
+
+    try {
+      DB::connection($connectionName)->transaction(function () use ($request) {
+
+        $individuKK = new MasterIndividu();
+        $individuKK->nik_nasional = $request->input('nik_nasional');
+        $individuKK->nama_lengkap = $request->input('nama_lengkap');
+        $individuKK->tempat_lahir = $request->input('tempat_lahir');
+        $individuKK->tanggal_lahir = $request->input('tanggal_lahir');
+        $individuKK->jenis_kelamin = $request->input('jenis_kelamin');
+        $individuKK->agama = $request->input('agama');
+        $individuKK->pendidikan = $request->input('pendidikan');
+        $individuKK->pekerjaan = $request->input('pekerjaan');
+        $individuKK->status_perkawinan = $request->input('status_perkawinan');
+        $individuKK->tanggal_catat_kawin = $request->input('tanggal_catat_kawin');
+        $individuKK->kewarganegaraan = $request->input('kewarganegaraan');
+        $individuKK->status_hubungan = $request->input('status_hubungan') ?? "tidak_diketahui";
+        $individuKK->golongan_darah = $request->input('golongan_darah');
+        $individuKK->nama_ayah = $request->input('nama_ayah');
+        $individuKK->nama_ibu = $request->input('nama_ibu');
+        $individuKK->alamat = $request->input('alamat');
+        $individuKK->save();
+
+      });
+    } catch (\Exception $e) {
+      return back()->withInput()->with('error', 'Gagal menyimpan data. Error: ' . $e->getMessage());
+    }
+
+    return redirect()->route('penduduk.create.bali')->with('success', 'Data penduduk baru berhasil ditambahkan.');
+  }
+
 
 }

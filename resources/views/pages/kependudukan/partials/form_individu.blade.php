@@ -97,33 +97,37 @@ $oldPrefix = str_replace(['[', ']'], ['.', ''], $prefix);
     <textarea name="{{$prefix}}[alamat]" rows="2" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md">{{ old($oldPrefix.'.alamat') }}</textarea>
   </div>
 
-  @if($krama_input_request !== "krama_adat")
-    <div class="md:col-span-3">
-      @if($krama_input_request === "krama_tamiu")
-        <label class="block text-sm font-medium">Desa Adat</label>
-      @else
-        <label class="block text-sm font-medium">Desa</label>
-      @endif
-      <textarea name="{{$prefix}}[{{$krama_input_request}}][desa]" rows="1" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md">{{ old($oldPrefix.'.desa') }}</textarea>
-    </div>
-
-    <div class="md:col-span-3">
-      <label class="block text-sm font-medium">Kecamatan</label>
-      <textarea name="{{$prefix}}[{{$krama_input_request}}][kecamatan]" rows="1" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md">{{ old($oldPrefix.'.kecamatan') }}</textarea>
-    </div>
-
-    <div class="md:col-span-3">
-      <label class="block text-sm font-medium">Kabupaten</label>
-      <textarea name="{{$prefix}}[{{$krama_input_request}}][kabupaten]" rows="1" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md">{{ old($oldPrefix.'.kabupaten') }}</textarea>
-    </div>
-
-    @if($krama_input_request === "tamiu")
+  @if(!empty($krama_input_request))
+    @if($krama_input_request !== "krama_adat")
       <div class="md:col-span-3">
-        <label class="block text-sm font-medium">Provinsi</label>
-        <textarea name="{{$prefix}}[{{$krama_input_request}}][provinsi]" rows="1" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md">{{ old($oldPrefix.'.provinsi') }}</textarea>
+        @if($krama_input_request === "krama_tamiu")
+          <label class="block text-sm font-medium">Desa Adat</label>
+        @else
+          <label class="block text-sm font-medium">Desa</label>
+        @endif
+        <textarea name="{{$prefix}}[{{$krama_input_request}}][desa]" rows="1" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md">{{ old($oldPrefix.'.desa') }}</textarea>
       </div>
+
+      <div class="md:col-span-3">
+        <label class="block text-sm font-medium">Kecamatan</label>
+        <textarea name="{{$prefix}}[{{$krama_input_request}}][kecamatan]" rows="1" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md">{{ old($oldPrefix.'.kecamatan') }}</textarea>
+      </div>
+
+      <div class="md:col-span-3">
+        <label class="block text-sm font-medium">Kabupaten</label>
+        <textarea name="{{$prefix}}[{{$krama_input_request}}][kabupaten]" rows="1" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md">{{ old($oldPrefix.'.kabupaten') }}</textarea>
+      </div>
+
+      @if($krama_input_request === "tamiu")
+        <div class="md:col-span-3">
+          <label class="block text-sm font-medium">Provinsi</label>
+          <textarea name="{{$prefix}}[{{$krama_input_request}}][provinsi]" rows="1" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md">{{ old($oldPrefix.'.provinsi') }}</textarea>
+        </div>
+      @endif
     @endif
   @endif
+
+
 
   {{-- Data Adat --}}
   <div class="col-span-1 md:col-span-2 lg:col-span-3"><h4 class="font-semibold text-gray-600 border-b pb-1 mt-4">Data Adat</h4></div>
@@ -136,7 +140,7 @@ $oldPrefix = str_replace(['[', ']'], ['.', ''], $prefix);
     <div>
       <label class="block text-sm font-medium">Status Hubungan Adat</label>
       <select name="{{$prefix}}[status_hubungan_adat]" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md">
-        @foreach(['istri','anak','orang_tua','cucu','saudara','famili_lain','lainnya','tidak_diketahui'] as $val)
+        @foreach(['suami','istri','anak','orang_tua','cucu','saudara','famili_lain','lainnya','tidak_diketahui'] as $val)
           <option value="{{$val}}" {{ old($oldPrefix.'.status_hubungan_adat') == $val ? 'selected' : '' }}>{{ ucfirst(str_replace('_', ' ', $val)) }}</option>
         @endforeach
       </select>

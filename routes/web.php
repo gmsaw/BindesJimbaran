@@ -101,7 +101,7 @@ use Illuminate\Support\Facades\Route;
 
 { //Developing Test
   Route::get('/dev-test-cropperjs', [DevTest::class, 'cropperjs'])
-    ->name('dev-test.cropperjs')->middleware('role:Admin');;
+    ->name('dev-test')->middleware('role:Admin');;
 }
 
 { //KEPENDUDUKAN
@@ -182,7 +182,20 @@ use Illuminate\Support\Facades\Route;
   // Route untuk memproses pembaruan data dari form edit perorangan
     Route::put('/penduduk/update/{nika}', [PendudukController::class, 'pendudukUpdate'])
       ->name('penduduk.update')->middleware('role:Admin');;
-  }
+
+    Route::get('/penduduk/pilih-input', [PendudukController::class, 'pendudukOptionsCreate'])
+      ->name('penduduk.create.options')->middleware('role:Admin');
+
+    Route::get('/penduduk/create/domisili-bali', [PendudukController::class, 'pendudukCreateBali'])
+      ->name('penduduk.create.bali')->middleware('role:Admin');
+
+    Route::get('/penduduk/create/domisili-luar-bali', [PendudukController::class, 'pendudukCreateLuarBali'])
+      ->name('penduduk.create.luar-bali')->middleware('role:Admin');
+
+    Route::post('/penduduk', [PendudukController::class, 'store'])
+      ->name('penduduk.store');
+
+}
 
 {   //SURAT-SURAT
     Route::get('/surat-menyurat', [SuratController::class, 'suratIndex']) ->name('surat.indexMain')->middleware('role:Admin');;

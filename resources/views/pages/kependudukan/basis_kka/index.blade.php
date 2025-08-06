@@ -148,13 +148,13 @@
                                             <i class="fas fa-print"></i>
                                         </a>
                                         {{-- Link ke halaman detail (jika ada) --}}
-                                        <a href="{{ route('kependudukan.show', ['npk' => $kk->npk]) }}" {{-- Contoh: route('kependudukan.show', $kk->npk) --}}
+                                        <a href="{{ route('kependudukan.show', ['npk' => $kk->npk, 'krama_request'=>$krama_request]) }}" {{-- Contoh: route('kependudukan.show', $kk->npk) --}}
                                         class="text-blue-600 hover:text-blue-900 p-1"
                                            title="Lihat Detail Anggota">
                                             <i class="fas fa-users"></i>
                                         </a>
                                         {{-- Link ke halaman edit (jika ada) --}}
-                                        <a href="{{ route('kependudukan.edit', ['npk' => $kk->npk]) }}" {{-- Contoh: route('kependudukan.edit', $kk->npk) --}}
+                                        <a href="{{ route('kependudukan.edit', ['npk' => $kk->npk, 'krama_request'=>$krama_request]) }}" {{-- Contoh: route('kependudukan.edit', $kk->npk) --}}
                                         class="text-green-600 hover:text-green-900 p-1"
                                            title="Edit KK">
                                             <i class="fas fa-edit"></i>

@@ -190,7 +190,7 @@
   </div>
 
   <!-- Tabel Anggota Keluarga -->
-  <div class="mt-[0.25rem] mb-[0.5rem] flex justify-center">
+  <div class="mt-[0.25rem] mb-1 flex justify-center">
     <table class="ml-[3rem] mr-[3rem] text-[9px] border border-gray-700 border-collapse w-[100%]">
       <thead class="bg-gray-200">
       <tr>
@@ -207,31 +207,55 @@
       </tr>
       </thead>
       <tbody>
-      @for ($i = 0; $i < 10; $i++)
+      @php
+        $order = [
+            'kepala_keluarga',
+            'istri',
+            'anak',
+            'orang_tua',
+            'cucu',
+            'saudara',
+            'famili_lain',
+            'lainnya',
+            'tidak_diketahui'
+        ];
+
+        $sorted_anggota = $anggota_list->sortBy(function($anggota) use ($order) {
+            return array_search($anggota->status_hubungan_adat, $order);
+        });
+      @endphp
+
+      @foreach ($sorted_anggota as $anggota)
+        <tr>
+          <td class="border border-gray-700 px-1 py-1 text-center">{{ $loop->iteration }}</td>
+          <td class="border border-gray-700 px-1 py-1">{{ $anggota->masterAdat?->masterIndividu->nama_lengkap }}</td>
+          <td class="border border-gray-700 px-1 py-1 text-center uppercase">{{ substr($anggota->masterAdat?->masterIndividu->jenis_kelamin, 0, 1) ?? '' }}</td>
+          <td class="border border-gray-700 px-1 py-1">{{ $anggota->masterAdat->nika ?? '' }}</td>
+          <td class="border border-gray-700 px-1 py-1 uppercase">
+            @if($anggota->masterAdat?->masterIndividu?->tanggal_lahir)
+              {{ $anggota->masterAdat?->masterIndividu->tempat_lahir . ', ' . \Carbon\Carbon::parse($anggota->masterAdat?->masterIndividu->tanggal_lahir)->translatedFormat('d F Y') }}
+            @endif
+          </td>
+          <td class="border border-gray-700 px-1 py-1">{{ ucfirst(str_replace('_', ' ',  $anggota->masterAdat?->masterIndividu->status_perkawinan)) ?? '' }}</td>
+          <td class="border border-gray-700 px-1 py-1">{{ ucfirst(str_replace('_', ' ', $anggota->masterAdat?->masterIndividu->pekerjaan)) ?? '' }}</td>
+          <td class="border border-gray-700 px-1 py-1 capitalize">{{ ucfirst(str_replace('_', ' ', $anggota->status_hubungan_adat)) ?? '' }}</td>
+          <td class="border border-gray-700 px-1 py-1">{{ $anggota->masterAdat?->masterIndividu->nama_ayah ?? '' }}</td>
+          <td class="border border-gray-700 px-1 py-1">{{ $anggota->masterAdat?->masterIndividu->nama_ibu ?? '' }}</td>
+        </tr>
+      @endforeach
+
+      @for ($i = $sorted_anggota->count(); $i < 10; $i++)
         <tr>
           <td class="border border-gray-700 px-1 py-1 text-center">{{ $i + 1 }}</td>
-
-          @if(!empty($anggota_list[$i]))
-            <td class="border border-gray-700 px-1 py-1">{{ $anggota_list[$i]->masterAdat?->masterIndividu->nama_lengkap }}</td>
-            <td class="border border-gray-700 px-1 py-1 text-center uppercase">{{ $anggota_list[$i]->masterAdat?->masterIndividu->jenis_kelamin ?? '' }}</td>
-            <td class="border border-gray-700 px-1 py-1">{{ $anggota_list[$i]->masterAdat->nika ?? '' }}</td>
-            <td class="border border-gray-700 px-1 py-1 uppercase">{{ $anggota_list[$i]->masterAdat?->masterIndividu->tempat_lahir . ', ' . \Carbon\Carbon::parse($anggota_list[$i]->masterAdat?->masterIndividu->tanggal_lahir)->translatedFormat('d F Y') }}</td>
-            <td class="border border-gray-700 px-1 py-1">{{ $anggota_list[$i]->masterAdat?->masterIndividu->status_perkawinan ?? '' }}</td>
-            <td class="border border-gray-700 px-1 py-1">{{ $anggota_list[$i]->masterAdat?->masterIndividu->pekerjaan ?? '' }}</td>
-            <td class="border border-gray-700 px-1 py-1">{{ $anggota_list[$i]->masterAdat?->masterIndividu->status_hubungan ?? '' }}</td>
-            <td class="border border-gray-700 px-1 py-1">{{ $anggota_list[$i]->masterAdat?->masterIndividu->nama_ayah ?? '' }}</td>
-            <td class="border border-gray-700 px-1 py-1">{{ $anggota_list[$i]->masterAdat?->masterIndividu->nama_ibu ?? '' }}</td>
-          @else
-            <td class="border border-gray-700 px-1 py-1"></td>
-            <td class="border border-gray-700 px-1 py-1 text-center"></td>
-            <td class="border border-gray-700 px-1 py-1"></td>
-            <td class="border border-gray-700 px-1 py-1"></td>
-            <td class="border border-gray-700 px-1 py-1"></td>
-            <td class="border border-gray-700 px-1 py-1"></td>
-            <td class="border border-gray-700 px-1 py-1"></td>
-            <td class="border border-gray-700 px-1 py-1"></td>
-            <td class="border border-gray-700 px-1 py-1"></td>
-          @endif
+          <td class="border border-gray-700 px-1 py-1"></td>
+          <td class="border border-gray-700 px-1 py-1 text-center"></td>
+          <td class="border border-gray-700 px-1 py-1"></td>
+          <td class="border border-gray-700 px-1 py-1"></td>
+          <td class="border border-gray-700 px-1 py-1"></td>
+          <td class="border border-gray-700 px-1 py-1"></td>
+          <td class="border border-gray-700 px-1 py-1"></td>
+          <td class="border border-gray-700 px-1 py-1"></td>
+          <td class="border border-gray-700 px-1 py-1"></td>
         </tr>
       @endfor
 
